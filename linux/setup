@@ -1,0 +1,13 @@
+1: install
+apt-get install python-pip
+pip install shadowsocks
+
+
+2:config
+copy ss.conf ssl.sh to xxpath
+
+3 auto start:
+在/etc/rc.local中增加
+sudo sh /xxpath/ssl.sh
+exit 0
+
