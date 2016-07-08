@@ -10,6 +10,13 @@ CONFIG_FILE=/etc/shadowsocks.json
 
 
 start() {
+    echo "start copy gwflist"
+    rm -rf /tmp/lhs_gwflist.conf
+    tar xzvf /etc/dnsmasq.d/lhs_gfwlist.conf.tar -C /tmp/
+    rm -rf /etc/dnsmasq.d/lhs_gwflist.conf
+    ln -s /tmp/lhs_gfwlist.conf /etc/dnsmasq.d/lhs_gwflist.conf
+    /etc/init.d/dnsmasq restart
+    /etc/init.d/firewall restart
     service_start /data/usr/sbin/ss-redir -c $CONFIG_FILE -b 0.0.0.0
 }
 
